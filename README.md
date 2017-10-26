@@ -1,4 +1,4 @@
-# ![Juice Shop Logo](https://raw.githubusercontent.com/bkimminich/juice-shop/master/app/public/images/JuiceShop_Logo_100px.png) OWASP Juice Shop [![OWASP Labs](https://img.shields.io/badge/owasp-lab%20project-f7b73c.svg)](https://www.owasp.org/index.php/OWASP_Project_Inventory#tab=Labs_Projects) [![GitHub release](https://img.shields.io/github/release/bkimminich/juice-shop.svg)](https://github.com/bkimminich/juice-shop/releases/latest) [![Twitter Follow](https://img.shields.io/twitter/follow/owasp_juiceshop.svg?style=social&label=Follow)](https://twitter.com/owasp_juiceshop)
+﻿# ![Juice Shop Logo](https://raw.githubusercontent.com/bkimminich/juice-shop/master/app/public/images/JuiceShop_Logo_100px.png) OWASP Juice Shop [![OWASP Labs](https://img.shields.io/badge/owasp-lab%20project-f7b73c.svg)](https://www.owasp.org/index.php/OWASP_Project_Inventory#tab=Labs_Projects) [![GitHub release](https://img.shields.io/github/release/bkimminich/juice-shop.svg)](https://github.com/bkimminich/juice-shop/releases/latest) [![Twitter Follow](https://img.shields.io/twitter/follow/owasp_juiceshop.svg?style=social&label=Follow)](https://twitter.com/owasp_juiceshop)
 
 [![Build Status](https://travis-ci.org/bkimminich/juice-shop.svg?branch=master)](https://travis-ci.org/bkimminich/juice-shop)
 [![Build status](https://ci.appveyor.com/api/projects/status/903c6mnns4t7p6fa/branch/master?svg=true)](https://ci.appveyor.com/project/bkimminich/juice-shop/branch/master)
@@ -97,13 +97,20 @@ overview please visit the official project page:
 
 ```
 #!/bin/bash
+# Install docker on the instance
 yum update -y
 yum install -y docker
+# start docker and make sure we don't do anything until it's started
 service docker start
-docker pull bkimminich/juice-shop
-docker run -d -p 80:3000 bkimminich/juice-shop
+chkconfig docker on
+# set up the instance so that Juice Shop will run on startup
+chmod a+w /etc/rc.d/rc.local
+sudo echo "docker run -d -p 80:3000 bkimminich/juice-shop" >> /etc/rc.d/rc.local
+chmod a-w /etc/rc.d/rc.local
+# run Juice Shop now as well
+docker run -d -p 80:3000 bkimminich/juice-shop 
 ```
-
+If you want to run this as a CTF instance you can set the appropriate global variables inside the container by using the -e flag on the docker commands.
 > Technically Amazon could view hacking activity on any EC2 instance as
 > an attack on their AWS infrastructure! We highly discourage aggressive
 > scanning or automated brute force attacks! You have been warned!

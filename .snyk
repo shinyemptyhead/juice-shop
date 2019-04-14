@@ -1,0 +1,20 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.3
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:hoek:20180212':
+    - sqlite3 > node-pre-gyp > hawk > hoek:
+        patched: '2019-04-14T01:00:59.884Z'
+    - sqlite3 > node-pre-gyp > hawk > sntp > hoek:
+        patched: '2019-04-14T01:00:59.884Z'
+    - sqlite3 > node-pre-gyp > hawk > boom > hoek:
+        patched: '2019-04-14T01:00:59.884Z'
+    - sqlite3 > node-pre-gyp > hawk > cryptiles > boom > hoek:
+        patched: '2019-04-14T01:00:59.884Z'
+  'npm:mime:20170907':
+    - sequelize-restful > connect > send > mime:
+        patched: '2019-04-14T01:00:59.884Z'
+  'npm:qs:20140806-1':
+    - sequelize-restful > connect > qs:
+        patched: '2019-04-14T01:00:59.884Z'

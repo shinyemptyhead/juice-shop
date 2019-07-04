@@ -76,7 +76,8 @@
     "serve-index": "~1.9",
     "socket.io": "~2.0",
     "sqlite3": "3.1.8",
-    "z85": "~0.0"
+    "z85": "~0.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "chai": "~4",
@@ -134,7 +135,9 @@
     "preprotractor": "npm run update-webdriver",
     "protractor": "node test/e2eTests.js",
     "stryker": "stryker run stryker.client-conf.js",
-    "vagrant": "cd vagrant && vagrant up"
+    "vagrant": "cd vagrant && vagrant up",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "engines": {
     "node": ">=6 <9"
@@ -175,5 +178,6 @@
       "/node_modules/",
       "/bower_components/"
     ]
-  }
+  },
+  "snyk": true
 }
